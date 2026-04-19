@@ -1,8 +1,8 @@
 import { useState, useEffect, useMemo } from 'react';
 import axios from 'axios';
 import { 
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer,
-  LineChart, Line, AreaChart, Area
+  XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer,
+  AreaChart, Area
 } from 'recharts';
 import type { Task, Column } from '../types';
 import { Target, CheckCircle, Clock } from 'lucide-react';
@@ -13,7 +13,7 @@ type TimeRange = 'daily' | 'weekly' | 'monthly';
 
 export function ManagerDashboard() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  const [columns, setColumns] = useState<Column[]>([]);
+  // columns not needed for this component's render currently
   const [loading, setLoading] = useState(true);
   const [timeRange, setTimeRange] = useState<TimeRange>('weekly');
   const [selectedMember, setSelectedMember] = useState<string | null>(null);
@@ -23,7 +23,6 @@ export function ManagerDashboard() {
       try {
         const res = await axios.get(`${API_BASE}/board`);
         setTasks(res.data.tasks);
-        setColumns(res.data.columns);
       } catch (err) {
         console.error("Failed to fetch data:", err);
         // Fallback for demo when backend is offline
@@ -33,12 +32,6 @@ export function ManagerDashboard() {
           { id: '3', columnId: 'in-progress', content: 'Conduct user research', tags: ['research'], comments: 1, attachments: 4, date: 'Oct 26', assignees: ['https://api.dicebear.com/7.x/avataaars/svg?seed=Max'] },
           { id: '4', columnId: 'review', content: 'Refactor auth module', tags: ['dev'], comments: 5, attachments: 1, date: 'Oct 22', assignees: ['https://api.dicebear.com/7.x/avataaars/svg?seed=Bella'] },
           { id: '5', columnId: 'done', content: 'Set up project repo', tags: ['dev'], comments: 0, attachments: 0, date: 'Oct 20', assignees: ['https://api.dicebear.com/7.x/avataaars/svg?seed=Lucas', 'https://api.dicebear.com/7.x/avataaars/svg?seed=Sam'] }
-        ]);
-        setColumns([
-          { id: 'todo', title: 'To Do' },
-          { id: 'in-progress', title: 'In Progress' },
-          { id: 'review', title: 'In Review' },
-          { id: 'done', title: 'Done' }
         ]);
       } finally {
         setLoading(false);
