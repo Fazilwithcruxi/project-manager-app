@@ -4,7 +4,7 @@ import {
   XAxis, YAxis, CartesianGrid, Tooltip as RechartsTooltip, Legend, ResponsiveContainer,
   AreaChart, Area
 } from 'recharts';
-import type { Task, Column } from '../types';
+import type { Task } from '../types';
 import { Target, CheckCircle, Clock } from 'lucide-react';
 
 const API_BASE = "http://localhost:3001/api";
