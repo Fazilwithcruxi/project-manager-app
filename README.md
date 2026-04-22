@@ -1,73 +1,76 @@
-# React + TypeScript + Vite
+# 🌌 Zenith: Next-Gen Project Management
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Zenith is a premium, high-performance project management dashboard designed for modern teams. It combines a stunning **glassmorphic UI** with bleeding-edge **AI capabilities** to make managing tasks faster, smarter, and visually immersive.
 
-Currently, two official plugins are available:
+🚀 **[Live Demo](https://fazilwithcruxi.github.io/project-manager-app/)** | 📦 **[Repository](https://github.com/Fazilwithcruxi/project-manager-app)**
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+[![GitHub license](https://img.shields.io/github/license/Fazilwithcruxi/project-manager-app)](https://github.com/Fazilwithcruxi/project-manager-app/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/Fazilwithcruxi/project-manager-app)](https://github.com/Fazilwithcruxi/project-manager-app/stargazers)
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## ✨ Key Features
 
-## Expanding the ESLint configuration
+- **🎙️ AI Voice Assistant (Zenith AI)**: Navigate the app and create tasks using just your voice. Powered by Google's Gemini 2.0 Flash for natural, context-aware interactions.
+- **📋 Dynamic Kanban Board**: Effortless drag-and-drop workflow management with advanced filtering and state persistence.
+- **📊 Interactive Analytics**: Real-time project tracking with beautiful charts (Recharts) and team performance metrics.
+- **🎨 Glassmorphic Aesthetic**: A state-of-the-art dark mode interface featuring acrylic blurs, vibrant gradients, and micro-animations.
+- **⚡ Full-Stack Power**: Lightning-fast React frontend powered by Vite, backed by a robust Node.js/Express server and PostgreSQL database.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Frontend**: React 19, TypeScript, Vite, Framer Motion, Recharts, Lucide Icons
+- **Backend**: Node.js, Express, PostgreSQL
+- **AI**: Google Generative AI (Gemini SDK)
+- **Infrastructure**: Docker Desktop (PostgreSQL Container)
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 🚀 Getting Started
+
+### 1. Prerequisites
+- [Node.js](https://nodejs.org/) (v18+)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (for the database)
+
+### 2. Installation
+```bash
+# Clone the repository
+git clone https://github.com/Fazilwithcruxi/project-manager-app.git
+
+# Install Frontend dependencies
+npm install
+
+# Install Backend dependencies
+cd backend
+npm install
+cd ..
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 3. Environment Setup
+Create a `.env` file in the root directory:
+```env
+VITE_GEMINI_API_KEY=your_gemini_api_key
 ```
+
+### 4. Run the Application
+```bash
+# Start the Database
+docker-compose up -d
+
+# Start the Backend (in /backend)
+npm run dev
+
+# Start the Frontend (in root)
+npm run dev
+```
+
+---
+
+## 🔗 Project Link
+Check out the repository here: [https://github.com/Fazilwithcruxi/project-manager-app](https://github.com/Fazilwithcruxi/project-manager-app)
+
+---
+
+Developed with ❤️ by [Fazil](https://github.com/Fazilwithcruxi)
