@@ -5,6 +5,7 @@ import { BoardColumn } from "./BoardColumn";
 import type { Task, Column } from "../types";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
+import { ProgressChainModal } from "./ProgressChainModal";
 
 const API_BASE = "http://localhost:3001/api";
 
@@ -12,6 +13,7 @@ export function Board() {
   const [columns, setColumns] = useState<Column[]>([]);
   const [tasks, setTasks] = useState<Task[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedAssignee, setSelectedAssignee] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchBoard = async () => {
@@ -128,17 +130,27 @@ export function Board() {
         {columns.map((column) => {
           const columnTasks = tasks.filter((t) => t.columnId === column.id);
           return (
-            <BoardColumn
+              <BoardColumn
               key={column.id}
               column={column}
               tasks={columnTasks}
               onAddTask={addTask}
               onDeleteTask={deleteTask}
               onUpdateTask={updateTask}
+              onAssigneeClick={setSelectedAssignee}
             />
           );
         })}
       </DragDropContext>
+
+      {selectedAssignee && (
+        <ProgressChainModal 
+          assigneeUrl={selectedAssignee}
+          tasks={tasks}
+          columns={columns}
+          onClose={() => setSelectedAssignee(null)}
+        />
+      )}
     </div>
   );
 }

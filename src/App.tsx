@@ -7,6 +7,7 @@ import { MyTasks } from './components/MyTasks';
 import { Team } from './components/Team';
 import { CreateTaskModal } from './components/CreateTaskModal';
 import { ManagerDashboard } from './components/ManagerDashboard';
+import { VoiceAssistant } from './components/VoiceAssistant';
 
 function App() {
   const [activeTab, setActiveTab] = useState('overview');
@@ -35,6 +36,11 @@ function App() {
           onSuccess={handleModalSuccess} 
         />
       )}
+
+      <VoiceAssistant 
+        setActiveTab={setActiveTab} 
+        openCreateModal={() => setIsModalOpen(true)} 
+      />
     </div>
   );
 }

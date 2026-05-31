@@ -8,9 +8,10 @@ interface Props {
   index: number;
   onDelete: (id: string) => void;
   onUpdate: (id: string, newContent: string) => void;
+  onAssigneeClick?: (assigneeUrl: string) => void;
 }
 
-export function TaskCard({ task, index, onDelete, onUpdate }: Props) {
+export function TaskCard({ task, index, onDelete, onUpdate, onAssigneeClick }: Props) {
   const [isEditing, setIsEditing] = useState(false);
   const [editContent, setEditContent] = useState(task.content);
 
@@ -109,12 +110,17 @@ export function TaskCard({ task, index, onDelete, onUpdate }: Props) {
                   key={idx}
                   src={assignee}
                   alt="Assignee"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    if (onAssigneeClick) onAssigneeClick(assignee);
+                  }}
                   style={{
                     width: '24px',
                     height: '24px',
                     borderRadius: '50%',
                     border: '2px solid var(--border-glass)',
-                    marginLeft: idx > 0 ? '-8px' : '0'
+                    marginLeft: idx > 0 ? '-8px' : '0',
+                    cursor: onAssigneeClick ? 'pointer' : 'default'
                   }}
                 />
               ))}

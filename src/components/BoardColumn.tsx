@@ -10,9 +10,10 @@ interface Props {
   onAddTask: (columnId: string) => void;
   onDeleteTask: (id: string) => void;
   onUpdateTask: (id: string, newContent: string) => void;
+  onAssigneeClick?: (assigneeUrl: string) => void;
 }
 
-export function BoardColumn({ column, tasks, onAddTask, onDeleteTask, onUpdateTask }: Props) {
+export function BoardColumn({ column, tasks, onAddTask, onDeleteTask, onUpdateTask, onAssigneeClick }: Props) {
   return (
     <div className="column glass-panel">
       <div className="column-header" style={{ padding: '16px' }}>
@@ -40,13 +41,14 @@ export function BoardColumn({ column, tasks, onAddTask, onDeleteTask, onUpdateTa
               padding: '0 16px 16px 16px'
             }}
           >
-            {tasks.map((task, index) => (
+             {tasks.map((task, index) => (
               <TaskCard 
                  key={task.id} 
                  task={task} 
                  index={index} 
                  onDelete={onDeleteTask}
                  onUpdate={onUpdateTask}
+                 onAssigneeClick={onAssigneeClick}
               />
             ))}
             {provided.placeholder}
